@@ -1,4 +1,4 @@
-# RF socket control :electric_plug:
+# RF socket control :satellite: :electric_plug:
 A tool to control RF sockets working on 433MHz.
 
 ### This project is based on 2 parts:
@@ -12,7 +12,7 @@ A tool to control RF sockets working on 433MHz.
   
   
 ### Details:
-These sockets typically, independent of the brand work by setting dip switches (10 on the sockets, 5 on the transmitter) to control the switches individually and to prevent interference. The 5 dip switches on the transmitter select which switches of which group are to be controlled (`groupID`). 5 of the 10 dip switches on the socket select the group the socket is in and the other 5 select the individual ID of the switch (`switchID`). The `switchID` translates to the letters like the following: `10000->A`, `01000->B`, `00001->E`.
+These sockets typically work the same independent of the brand. To use them you usually have to set dip switches (10 on the sockets, 5 on the transmitter) to control the switches individually and to prevent interference. The 5 dip switches on the transmitter select which switches of which group are to be controlled (`groupID`). 5 of the 10 dip switches on the socket select the group the socket is in and the other 5 select the individual ID of the switch (`switchID`). The `switchID` translates to the letters like the following: `10000->A`, `01000->B`, `00001->E`.
 
 When a group is selected in the webinterface and a on/off button is clicked on, a form gets submitted to `switch.php` where a curl request to a client gets submitted following this format: 
 
@@ -28,7 +28,7 @@ A webserver running on the client tries to parse the `groupID`, the `switchID` a
   * in switch.php, use curl instead of `shell_exec(...)`
   * option to set up multiple clients if the reach is not sufficient
   * visualization of the group selection so one does not have to know how to read binary to get how the group selection works 
-  * makros
+  * macros
   * printable QR codes (?)
   * dynamic cheatsheet response on clients
   
