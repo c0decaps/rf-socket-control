@@ -1,0 +1,16 @@
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: #e2e3e2;
+	font-size: 20pt;
+}
+th, td {
+	padding: 25px;
+	text-align: center;
+}
+h1 {
+	font-size: 27pt;
+}
+.edit-icon {
+	width: 1%;
+	height:1%;
+}

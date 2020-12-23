@@ -3,7 +3,7 @@ A tool to control RF sockets working on 433MHz.
 
 ### This project is based on 2 parts:
   * **host:** webserver, basically emulating a typical control that comes with such remote sockets
-  * **client:** connected to an 433MHz antenna and to wifi/lan it receives commands from the host which command to send utilizing `RCSwitch.h`
+  * **client:** connected to an 433MHz antenna and to wifi/lan it receives orders from the host which command to send utilizing `RCSwitch.h`
   
   
 ### Requirements: 
