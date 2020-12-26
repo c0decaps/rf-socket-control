@@ -2,9 +2,14 @@
 <?php 
 include 'functions.php';
 $names_conf_file   = 'data/config/names.ini';
-$general_conf_file = 'data/config/config_en.ini';
+$general_conf_file = 'data/config/config_de.ini';
 $names_conf  = parse_ini_file($names_conf_file, true);
 $general_conf= parse_ini_file($general_conf_file, true);
+$groupBin = "00000";
+if(isset($_COOKIE["last_group"])) {
+	$groupBin = $_COOKIE["last_group"];
+}
+$groupNum = bindec($groupBin)+1;
 ?>
 	<head>
 	<title><?php echo $general_conf["strings"]["TITLE"] ?></title>
@@ -24,7 +29,13 @@ $general_conf= parse_ini_file($general_conf_file, true);
 								<input type="hidden" name="cmdID" value="1"></input>
 								<input class="group_selector" type="hidden" name="groupID" value="00000"></input></td>
 					</form>
-					<td><h1>A</h1></td>
+					<td>
+						<form action="change_description.php" method="POST">
+						<input type="hidden" class="socket_name" name="socketName" value="A"><h1>A</h1>
+							<input type="hidden" class="group_selector" name="groupID" value="00000">
+							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["A"] ?>>
+						</form>
+					</td>
 						<form action="switch.php" method="POST">
 						<td><input class="submit_button off-button" type="submit" value=<?php echo $general_conf["strings"]["OFF_BUTTON_TEXT"] ?>>
 									</input><input type="hidden" name="switchID" value="10000"></input>
@@ -39,7 +50,13 @@ $general_conf= parse_ini_file($general_conf_file, true);
 								<input type="hidden" name="cmdID" value="1"></input>
 								<input class="group_selector" type="hidden" name="groupID" value="00000"></input></td>
 					</form>
-					<td><h1>B</h1>
+					<td>
+						<form action="change_description.php" method="POST">
+						<input type="hidden" class="socket_name" name="socketName" value="B"><h1>B</h1>
+							<input type="hidden" class="group_selector" name="groupID" value="00000">
+							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["B"] ?>>
+						</form>	
+					</td>
 						<form action="switch.php" method="POST">
 							<td><input class="submit_button off-button" type="submit" value=<?php echo $general_conf["strings"]["OFF_BUTTON_TEXT"] ?>>
 							</input><input type="hidden" name="switchID" value="01000"></input>
@@ -54,7 +71,13 @@ $general_conf= parse_ini_file($general_conf_file, true);
 								<input type="hidden" name="cmdID" value="1"></input>
 								<input class="group_selector" type="hidden" name="groupID" value="00000"></input></td>
 					</form>
-					<td><h1>C</h1>
+					<td>
+						<form action="change_description.php" method="POST">
+						<input type="hidden" class="socket_name" name="socketName" value="C"><h1>C</h1>
+							<input type="hidden" class="group_selector" name="groupID" value="00000">
+							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["C"] ?>>
+						</form>	
+					</td>
 						<form action="switch.php" method="POST">
 							<td><input class="submit_button off-button" type="submit" value=<?php echo $general_conf["strings"]["OFF_BUTTON_TEXT"] ?>>
 							</input><input type="hidden" name="switchID" value="00100"></input>
@@ -69,7 +92,13 @@ $general_conf= parse_ini_file($general_conf_file, true);
 								<input type="hidden" name="cmdID" value="1"></input>
 								<input class="group_selector" type="hidden" name="groupID" value="00000"></input></td>
 					</form>
-					<td><h1>D</h1>
+					<td>
+						<form action="change_description.php" method="POST">
+						<input type="hidden" class="socket_name" name="socketName" value="D"><h1>D</h1>
+							<input type="hidden" class="group_selector" name="groupID" value="00000">
+							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["D"] ?>>
+						</form>	
+					</td>
 						<form action="switch.php" method="POST">
 							<td><input class="submit_button off-button" type="submit" value=<?php echo $general_conf["strings"]["OFF_BUTTON_TEXT"] ?>>
 							</input><input type="hidden" name="switchID" value="00010"></input>
@@ -84,7 +113,14 @@ $general_conf= parse_ini_file($general_conf_file, true);
 								<input type="hidden" name="cmdID" value="1"></input>
 								<input class="group_selector" type="hidden" name="groupID" value="00000"></input></td>
 					</form>
-					<td><h1>E</h1>
+					<td>
+						<form action="change_description.php" method="POST">
+						<input type="hidden" class="socket_name" name="socketName" value="E"><h1>E</h1>
+							<input type="hidden" class="group_selector" name="groupID" value="00000">
+							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["E"] ?>>
+						</form>	
+
+					</td>
 						<form action="switch.php" method="POST">
 							<td><input class="submit_button off-button" type="submit" value=<?php echo $general_conf["strings"]["OFF_BUTTON_TEXT"] ?>>
 							</input><input type="hidden" name="switchID" value="00001"></input>
@@ -95,7 +131,7 @@ $general_conf= parse_ini_file($general_conf_file, true);
 				</tr>
 				</table>
 			</div>
-			<select name="groupID" id="group_select" onchange="update_group()">
+			<select name="groupID" id="group_select" onchange="group_changed()">
 					<option value='00000' id='00000'><?php echo $names_conf["group_names"]["group1"] ?></option>
 					<option value='00001' id='00001'><?php echo $names_conf["group_names"]["group2"] ?></option>
 					<option value='00010' id='00010'><?php echo $names_conf["group_names"]["group3"] ?></option>
@@ -145,8 +181,13 @@ $general_conf= parse_ini_file($general_conf_file, true);
 			console.log("changing group from ");
 			console.log(document.getElementById("group_select").value)
 			group.value = document.getElementById("group_select").value;
-
+			document.cookie = "last_group="+group.value;
+			//window.location.reload(true); 
 		})
+	}
+	function group_changed() {
+		update_group();
+		window.location.reload(true); // reload page to update socket descriptions
 	}
 	function edit_groupname() {
 		var enter_groupname = document.getElementById("enter_groupname");
