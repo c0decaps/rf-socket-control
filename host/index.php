@@ -12,9 +12,11 @@ if(isset($_COOKIE["last_group"])) {
 $groupNum = bindec($groupBin)+1;
 ?>
 	<head>
-	<title><?php echo $general_conf["strings"]["TITLE"] ?></title>
-	<link rel="stylesheet" href="data/css/general.css">
-	<link rel="stylesheet" href="data/css/buttons.css">
+	   <title><?php echo $general_conf["strings"]["TITLE"] ?></title>
+	   <link rel="stylesheet" href="data/css/general.css">
+	   <link rel="stylesheet" href="data/css/buttons.css">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+	   <link rel="icon" href="data/images/home.svg">
 	</head>
 	<body>
 		<center>
@@ -31,9 +33,9 @@ $groupNum = bindec($groupBin)+1;
 					</form>
 					<td>
 						<form action="change_description.php" method="POST">
-						<input type="hidden" class="socket_name" name="socketName" value="A"><h1>A</h1>
+						<input type="hidden" class="socket_name" name="socketName" value="A"><h6>A</h6>
 							<input type="hidden" class="group_selector" name="groupID" value="00000">
-							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["A"] ?>>
+							<input type="text" onchange="this.form.submit()" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["A"] ?>>
 						</form>
 					</td>
 						<form action="switch.php" method="POST">
@@ -52,7 +54,7 @@ $groupNum = bindec($groupBin)+1;
 					</form>
 					<td>
 						<form action="change_description.php" method="POST">
-						<input type="hidden" class="socket_name" name="socketName" value="B"><h1>B</h1>
+						<input type="hidden" class="socket_name" name="socketName" value="B"><h6>B</h6>
 							<input type="hidden" class="group_selector" name="groupID" value="00000">
 							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["B"] ?>>
 						</form>	
@@ -73,7 +75,7 @@ $groupNum = bindec($groupBin)+1;
 					</form>
 					<td>
 						<form action="change_description.php" method="POST">
-						<input type="hidden" class="socket_name" name="socketName" value="C"><h1>C</h1>
+						<input type="hidden" class="socket_name" name="socketName" value="C"><h6>C</h6>
 							<input type="hidden" class="group_selector" name="groupID" value="00000">
 							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["C"] ?>>
 						</form>	
@@ -94,7 +96,7 @@ $groupNum = bindec($groupBin)+1;
 					</form>
 					<td>
 						<form action="change_description.php" method="POST">
-						<input type="hidden" class="socket_name" name="socketName" value="D"><h1>D</h1>
+						<input type="hidden" class="socket_name" name="socketName" value="D"><h6>D</h6>
 							<input type="hidden" class="group_selector" name="groupID" value="00000">
 							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["D"] ?>>
 						</form>	
@@ -115,7 +117,7 @@ $groupNum = bindec($groupBin)+1;
 					</form>
 					<td>
 						<form action="change_description.php" method="POST">
-						<input type="hidden" class="socket_name" name="socketName" value="E"><h1>E</h1>
+						<input type="hidden" class="socket_name" name="socketName" value="E"><h6>E</h6>
 							<input type="hidden" class="group_selector" name="groupID" value="00000">
 							<input type="text" class="description" name="descr" placeholder=<?php echo $names_conf["group".$groupNum]["E"] ?>>
 						</form>	

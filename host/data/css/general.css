@@ -10,7 +10,24 @@ th, td {
 h1 {
 	font-size: 27pt;
 }
+h6 {
+	color: #434343;
+}
 .edit-icon {
 	width: 1%;
 	height:1%;
+}
+.description {
+	text-align: center;
+	border: 1px dashed;
+	border-color: #aeaeae;
+	border-radius: 13px;
+	margin: 0;
+	font-size: 19pt;
+	background: none;
+	width: 250px;
+}
+.description::placeholder {
+	color: #636363;
+	opacity: 1;
 }
