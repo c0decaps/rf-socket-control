@@ -31,3 +31,13 @@ h6 {
 	color: #636363;
 	opacity: 1;
 }
+.github_link {
+	text-decoration: none;
+	font-size: 16px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.github_link a {
+	color: #2f2f2f;
+}

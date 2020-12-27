@@ -3,8 +3,10 @@
 include 'functions.php';
 $names_conf_file   = 'data/config/names.ini';
 $general_conf_file = 'data/config/config_de.ini';
+$settings_conf_file= 'data/config/settings.ini';
 $names_conf  = parse_ini_file($names_conf_file, true);
 $general_conf= parse_ini_file($general_conf_file, true);
+$settings_conf=parse_ini_file($settings_conf_file,true);
 $groupBin = "00000";
 if(isset($_COOKIE["last_group"])) {
 	$groupBin = $_COOKIE["last_group"];
@@ -175,6 +177,11 @@ $groupNum = bindec($groupBin)+1;
 					 <input name="group_to_change" class="group_selector" type="hidden" value="" id="change_groupname_groupID"></input>
 				</div>  
 	</body>
+	<?php
+		if($settings_conf["settings"]["show_github_link"] == "true") {
+			echo '<div class="github_link"><a href="https://github.com/c0decaps/rf-socket-control">github</a></div>';
+		}
+	?>
 	<script>
 	function update_group() {
 		console.log('change of group detected');
