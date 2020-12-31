@@ -29,6 +29,8 @@ A webserver running on the client tries to parse the `groupID`, the `switchID` a
   * in switch.php, use curl instead of `shell_exec(...)`
   * maybe get the project to work only on ESPs (would probably mean to get rid of PHP :frowning:)
   * option to set up multiple clients if the reach is not sufficient
+  * add the option to ask before actually sending the request for certain sockets
+  * add a settings page
   * visualization of the group selection so one does not have to know how to read binary to get how the group selection works
   * macros
   * printable QR codes (?)
