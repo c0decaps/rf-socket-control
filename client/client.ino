@@ -60,6 +60,12 @@ void loop() {
   String request = client.readStringUntil('\r');
   Serial.println(request);
   client.flush();
+
+  
+  // Head of the response
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-Type: text/html");
+  client.println(""); //  do not forget this one
  
   // Match the request
   String groupID_identifier = "groupID"; 
@@ -77,33 +83,32 @@ void loop() {
     String switch_id_string = request.substring(switch_id_starting, switch_id_starting+switch_len);
     switch_id_string.toCharArray(switchID, switchIDlen);
     int command_id_starting = request.indexOf(command_identifier)+command_identifier.length();
+    // continue response if all data could be parsed
+    client.print("turned ");
+    client.print(switch_id_string);
+    client.print(" in ");
+    client.print(group_id_string);
     if(request.substring(command_id_starting,command_id_starting+1) == "1") {
       mySwitch.switchOn(groupID, switchID);
       Serial.print("turning ON switch ");
+      client.print(" on");
     } else {
       Serial.println("turning OFF switch ");
       mySwitch.switchOff(groupID, switchID);
+      client.print(" off");
     }
     Serial.print(switchID);
     Serial.print(" in group ");
     Serial.print(groupID);
     Serial.println("");
+    
+  } else {
+    client.println("something went wrong");
+    client.print("usage example: http://");
+    client.print(WiFi.localIP());
+    client.println("/groupID510000switchID500001cmdID1");
+    client.println("to turn on switch 00001 in group 10000");
   }
- 
-  // Return the response
-  client.println("HTTP/1.1 200 OK");
-  client.println("Content-Type: text/html");
-  client.println(""); //  do not forget this one
-  client.println("<!DOCTYPE HTML>");
-  client.println("<html>");
-  client.println("<link rel=\"icon\" href=\"data:;base64,=\">"); //test to avoid favicon.ico request ( https://stackoverflow.com/questions/1321878/how-to-prevent-favicon-ico-requests )
-  client.println("<center>");
-  client.println("<h1>syntax: ");
-  client.print("http://");
-  client.print(WiFi.localIP());
-  client.println("/groupID510000switchID500001cmdID1 </h1>");
-  client.println("<br><br><h3>to turn on switch 00001 in group 10000</h3>");
-  client.println("</html>");
  
   delay(100);
   Serial.println("Client disonnected");

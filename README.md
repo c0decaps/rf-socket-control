@@ -26,7 +26,6 @@ A webserver running on the client tries to parse the `groupID`, the `switchID` a
 ##### TODO:
   * implement the option to set timejobs/timers :clock1030:
   * ~~add changeable descriptions to each socket similar to the changeable groupnames~~ allow descriptions with whitespaces ~~, also make descriptions look nicer~~
-  * in switch.php, use curl instead of `shell_exec(...)`
   * maybe get the project to work only on ESPs (would probably mean to get rid of PHP :frowning:)
   * option to set up multiple clients if the reach is not sufficient
   * add the option to ask before actually sending the request for certain sockets
@@ -35,7 +34,6 @@ A webserver running on the client tries to parse the `groupID`, the `switchID` a
   * macros
   * printable QR codes (?)
   * get consistent naming (`switchID` should be `socketID`)
-  * dynamic cheatsheet response on clients
 
 ###### other projects used:
   * [feather icons](https://github.com/feathericons/feather)
