@@ -7,7 +7,7 @@ A tool to control RF sockets working on 433MHz.
 
 
 ### Requirements:
-  * Host device (e.g. RaspberryPi) with a webserver, curl, php and permissions for `www-data` to write to `data/config`.
+  * Host device (e.g. RaspberryPi) with a webserver, php, php-curl and permissions for `www-data` to write to `data/config`.
   * Client device, e.g. ESP8266 with a 433MHz antenna
 
 
