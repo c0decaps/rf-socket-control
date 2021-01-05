@@ -25,6 +25,7 @@ A webserver running on the client tries to parse the `groupID`, the `switchID` a
 
 ##### TODO:
   * implement the option to set timejobs/timers :clock1030:
+  * add buttons to turn on/off every socket within a group (or every socket in every group?)
   * ~~add changeable descriptions to each socket similar to the changeable groupnames~~ allow descriptions with whitespaces ~~, also make descriptions look nicer~~
   * maybe get the project to work only on ESPs (would probably mean to get rid of PHP :frowning:)
   * option to set up multiple clients if the reach is not sufficient
