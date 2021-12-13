@@ -11,7 +11,7 @@ char switchID[switchIDlen] = "";
 
 RCSwitch mySwitch = RCSwitch();
 
-#define transmit_data_pin 2 // D4 on WeMos D1/Nodemcu
+#define transmit_data_pin 15 // D8 on WeMos/Nodemcu
 WiFiServer server(80);
  
 void setup() {
