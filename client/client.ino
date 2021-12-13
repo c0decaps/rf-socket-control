@@ -3,16 +3,15 @@
 
 const char* ssid = "SSID_PLACEHOLDER";
 const char* password = "PASSWORD_PLACEHOLDER";
+WiFiServer server(80);
 
 #define groupIDlen  10
 #define switchIDlen 10
 char groupID[groupIDlen] = "";
 char switchID[switchIDlen] = "";
 
-RCSwitch mySwitch = RCSwitch();
-
 #define transmit_data_pin 15 // D8 on WeMos/Nodemcu
-WiFiServer server(80);
+RCSwitch mySwitch = RCSwitch();
  
 void setup() {
   Serial.begin(115200);
@@ -41,7 +40,9 @@ void setup() {
   Serial.print("http://");
   Serial.print(WiFi.localIP());
   Serial.println("/");
- 
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
  
 void loop() {
@@ -78,17 +79,23 @@ void loop() {
     // get index of character where the data starts
     int group_id_starting = request.indexOf(groupID_identifier)+groupID_identifier.length()+1;
     int switch_id_starting = request.indexOf(switchID_identifier)+switchID_identifier.length()+1;
+    
     // get actual data
     String group_id_string = request.substring(group_id_starting, group_id_starting+group_len);
     group_id_string.toCharArray(groupID, groupIDlen);
     String switch_id_string = request.substring(switch_id_starting, switch_id_starting+switch_len);
     switch_id_string.toCharArray(switchID, switchIDlen);
     int command_id_starting = request.indexOf(command_identifier)+command_identifier.length();
+    
     // continue response if all data could be parsed
     client.print("turned ");
     client.print(switch_id_string);
     client.print(" in ");
     client.print(group_id_string);
+    
+    // activate builtin led for feedback
+    digitalWrite(LED_BUILTIN, LOW);
+    
     if(request.substring(command_id_starting,command_id_starting+1) == "1") {
       mySwitch.switchOn(groupID, switchID);
       Serial.print("turning ON switch ");
@@ -112,6 +119,7 @@ void loop() {
   }
  
   delay(100);
+  digitalWrite(LED_BUILTIN, HIGH);
   Serial.println("Client disonnected");
   Serial.println("");
 }
