@@ -1,6 +1,8 @@
 # RF socket control :satellite: :electric_plug:
 A tool to control RF sockets working on 433MHz.
 
+![rf_demo](https://github.com/c0decaps/rf-socket-control/assets/20572466/9346c729-7d0c-4f93-b84a-8b1de0597ec9)
+
 ### This project is based on 2 parts:
   * **host:** webinterface, basically emulating a typical control that comes with such remote sockets
   * **client:** connected to an 433MHz antenna and to wifi/lan it receives orders from the host which command to send utilizing `RCSwitch.h`
